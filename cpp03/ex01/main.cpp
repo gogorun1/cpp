@@ -1,11 +1,12 @@
-#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 int main()
 {
-    ClapTrap A("A");
-    ClapTrap B("B");
-    ClapTrap C(A);
+    ScavTrap A("A");
+    ScavTrap B("B");
+    ScavTrap C(A);
     A.attack("B");
     A.beRepaired(2);
     A.takeDamage(3);
+    A.guardGate();
 }
