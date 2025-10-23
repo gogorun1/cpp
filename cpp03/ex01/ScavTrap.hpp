@@ -1,24 +1,24 @@
+#ifndef SCAVTRAP_H
+#define SCAVTRAP_H
+
 #include "ClapTrap.hpp"
 
 class ScavTrap : public ClapTrap
 {
-private:
-    std::string _name;
-    int _hitPoints;
-    int _energyPoints;
-    int _attackDamage;
+
 public:
+    // OCF
     ScavTrap();
     ScavTrap(std::string Name);
     ScavTrap(ScavTrap const &other);
     ScavTrap &operator=(ScavTrap const &other);
     ~ScavTrap();
-    //getters
-    std::string getName() const;
-    int getHitPoints() const;
-    int getEnergyPoints() const;
-    int getAttackDamage() const;
+
+    // Override messages inherited from parent
     void attack(const std::string& target);
-    void takeDamage(unsigned int amount);
-    void beRepaired(unsigned int amount);
-}
+
+    // ScavTrap functions
+    void guardGate();
+};
+
+#endif
