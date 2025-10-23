@@ -26,10 +26,7 @@ ScavTrap &ScavTrap::operator=(ScavTrap const &other)
     PRINT("ScavTrap: Assign operator is called");
     if (this != &other)
 	{
-		this->_name = other._name;
-		this->_hitPoints = other._hitPoints;
-		this->_energyPoints = other._energyPoints;
-		this->_attackDamage = other._attackDamage;
+		ClapTrap::operator=(other);
 	}
 	return *this;
 }
