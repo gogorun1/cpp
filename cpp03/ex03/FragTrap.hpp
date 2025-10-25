@@ -3,8 +3,12 @@
 
 #include "ClapTrap.hpp"
 
-class FragTrap : public ClapTrap
+class FragTrap : virtual public ClapTrap
 {
+protected:
+    static const int FRAG_HIT_POINTS = 100;
+    static const int FRAG_ENERGY_POINTS = 100;
+    static const int FRAG_ATTACK_DAMAGE = 30;
 
 public:
 	// OCF

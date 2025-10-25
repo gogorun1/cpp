@@ -3,8 +3,12 @@
 
 #include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap
+class ScavTrap : virtual public ClapTrap
 {
+protected:
+    static const int SCAV_HIT_POINTS = 100;
+    static const int SCAV_ENERGY_POINTS = 50;
+    static const int SCAV_ATTACK_DAMAGE = 20;
 
 public:
 	// OCF

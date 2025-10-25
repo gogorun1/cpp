@@ -7,6 +7,7 @@ RM = rm -f
 SRCS = main.cpp \
 		ClapTrap.cpp \
 		FragTrap.cpp \
+		DiamondTrap.cpp \
 		ScavTrap.cpp 
 OBJS = $(SRCS:.cpp=.o)
 DEPS = $(SRCS:.cpp=.d)

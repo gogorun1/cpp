@@ -1,11 +1,11 @@
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap(): _name("Default"), _hitPoints(10), _energyPoints(10), _attackDamage(0)
+ClapTrap::ClapTrap(): _name("Default"), _hitPoints(DEFAULT_HIT_POINTS), _energyPoints(DEFAULT_ENERGY_POINTS), _attackDamage(DEFAULT_ATTACK_DAMAGE)
 {
     PRINT("ClapTrap: Default constructor is called");
 }
 
-ClapTrap::ClapTrap(std::string Name): _name(Name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
+ClapTrap::ClapTrap(std::string Name): _name(Name), _hitPoints(DEFAULT_HIT_POINTS), _energyPoints(DEFAULT_ENERGY_POINTS), _attackDamage(DEFAULT_ATTACK_DAMAGE)
 {
     PRINT("ClapTrap: Constructor with parameter is called");
 }
@@ -71,6 +71,7 @@ void ClapTrap::takeDamage(unsigned int amount)
         return;
     }
     _hitPoints -= amount;
+    PRINT("health is " << _hitPoints);
     PRINT("ClapTrap " << _name << " takes " << amount << " points of damage!");
 }
 

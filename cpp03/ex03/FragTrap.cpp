@@ -7,17 +7,17 @@ FragTrap::FragTrap(): ClapTrap()
 
 FragTrap::FragTrap(std::string Name): ClapTrap(Name)
 {
-	this->_hitPoints = 100;
-	this->_energyPoints = 100;
-	this->_attackDamage = 30;
+	this->_hitPoints = FRAG_HIT_POINTS;
+	this->_energyPoints = FRAG_ENERGY_POINTS;
+	this->_attackDamage = FRAG_ATTACK_DAMAGE;
     PRINT("FragTrap: Constructor with parameter is called");
 }
 
 FragTrap::FragTrap(FragTrap const &other): ClapTrap(other._name)
 {
-	this->_hitPoints = 100;
-	this->_energyPoints = 100;
-	this->_attackDamage = 30;
+	this->_hitPoints = FRAG_HIT_POINTS;
+	this->_energyPoints = FRAG_ENERGY_POINTS;
+	this->_attackDamage = FRAG_ATTACK_DAMAGE;
     PRINT("FragTrap: Copy constructor is called");
 }
 

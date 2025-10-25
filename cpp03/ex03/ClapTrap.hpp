@@ -9,6 +9,10 @@
 class ClapTrap
 {
 protected:
+    static const int DEFAULT_HIT_POINTS = 10;
+    static const int DEFAULT_ENERGY_POINTS = 10;
+    static const int DEFAULT_ATTACK_DAMAGE = 0;
+
     std::string _name;
     int _hitPoints;
     int _energyPoints;

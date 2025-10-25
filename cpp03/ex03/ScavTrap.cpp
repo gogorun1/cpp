@@ -7,17 +7,17 @@ ScavTrap::ScavTrap(): ClapTrap()
 
 ScavTrap::ScavTrap(std::string Name): ClapTrap(Name)
 {
-	this->_hitPoints = 100;
-	this->_energyPoints = 50;
-	this->_attackDamage = 20;
+	this->_hitPoints = SCAV_HIT_POINTS;
+	this->_energyPoints = SCAV_ENERGY_POINTS;
+	this->_attackDamage = SCAV_ATTACK_DAMAGE;
     PRINT("ScavTrap: Constructor with parameter is called");
 }
 
 ScavTrap::ScavTrap(ScavTrap const &other): ClapTrap(other._name)
 {
-	this->_hitPoints = 100;
-	this->_energyPoints = 50;
-	this->_attackDamage = 20;
+	this->_hitPoints = SCAV_HIT_POINTS;
+	this->_energyPoints = SCAV_ENERGY_POINTS;
+	this->_attackDamage = SCAV_ATTACK_DAMAGE;
     PRINT("ScavTrap: Copy constructor is called");
 }
 
