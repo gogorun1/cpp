@@ -1,33 +1,33 @@
 #include "AAnimal.hpp"
 
-AAnimal::AAnimal(): _type("default")
+AAnimal::AAnimal() : _type("default")
 {
-    PRINT("AAnimal default constructor called");
+	PRINT("AAnimal default constructor called");
 }
 
-AAnimal::AAnimal(std::string type): _type(type)
+AAnimal::AAnimal(std::string type) : _type(type)
 {
-    PRINT("AAnimal constructor with parameters called");
+	PRINT("AAnimal constructor with parameters called");
 }
 
-AAnimal::AAnimal(AAnimal const &other): _type(other._type)
+AAnimal::AAnimal(AAnimal const &other) : _type(other._type)
 {
-    PRINT("AAnimal copy constructor called");
+	PRINT("AAnimal copy constructor called");
 }
 
 AAnimal &AAnimal::operator=(AAnimal const &other)
 {
-    PRINT("AAnimal assign operator called");
-    if (this != &other)
-    {
-       this->_type = other._type;
-    }
-    return *this;
+	PRINT("AAnimal assign operator called");
+	if (this != &other)
+	{
+		this->_type = other._type;
+	}
+	return *this;
 }
 
 AAnimal::~AAnimal()
 {
-    PRINT("AAnimal destructor called");
+	PRINT("AAnimal destructor called");
 }
 
 // void AAnimal::makeSound() const
@@ -36,7 +36,5 @@ AAnimal::~AAnimal()
 
 std::string AAnimal::getType() const
 {
-    return _type;
+	return _type;
 }
-
-

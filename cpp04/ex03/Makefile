@@ -5,10 +5,7 @@ CFLAGS = -Wall -Werror -Wextra -MMD -MP -std=c++98
 RM = rm -f
 
 SRCS = main.cpp \
-		AAnimal.cpp \
-		Cat.cpp \
-		Dog.cpp \
-		Brain.cpp
+		AMateria.cpp \
 OBJS = $(SRCS:.cpp=.o)
 DEPS = $(SRCS:.cpp=.d)
 
