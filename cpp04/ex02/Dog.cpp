@@ -1,12 +1,12 @@
 #include "Dog.hpp"
 
-Dog::Dog(): Animal("Dog")
+Dog::Dog(): AAnimal("Dog")
 {
     _brain = new Brain();
     PRINT("Dog default constructor called");
 }
 
-Dog::Dog(Dog const &other): Animal(other._type)
+Dog::Dog(Dog const &other): AAnimal(other._type)
 {
     _brain = new Brain();
     PRINT("Dog copy constructor called");
@@ -24,6 +24,7 @@ Dog &Dog::operator=(Dog const &other)
 
 Dog::~Dog()
 {
+    delete _brain;
     PRINT("Dog destructor called");
 }
 

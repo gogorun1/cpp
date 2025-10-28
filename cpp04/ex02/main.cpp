@@ -1,12 +1,15 @@
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Brain.hpp"
 #include "Cat.hpp"
 #include "Dog.hpp"
 
 int main()
 {
+    // abstract class cannot instatiate, the following lines cant complie
+    // Animal a;
+    // Animal *a = new Animal();
     static const int ARRAY_SIZE = 4;
-    Animal *animal[ARRAY_SIZE];
+    AAnimal *animal[ARRAY_SIZE];
     for(int index = 0; index < ARRAY_SIZE; index++)
     {
         if (index < ARRAY_SIZE / 2)

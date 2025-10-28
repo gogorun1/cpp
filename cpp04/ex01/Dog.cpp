@@ -24,6 +24,7 @@ Dog &Dog::operator=(Dog const &other)
 
 Dog::~Dog()
 {
+    delete _brain;
     PRINT("Dog destructor called");
 }
 

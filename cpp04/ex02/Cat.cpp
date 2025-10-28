@@ -1,12 +1,12 @@
 #include "Cat.hpp"
 
-Cat::Cat(): Animal("Cat")
+Cat::Cat(): AAnimal("Cat")
 {
     PRINT("Cat default constructor called");
     _brain = new Brain();
 }
 
-Cat::Cat(Cat const &other): Animal(other._type)
+Cat::Cat(Cat const &other): AAnimal(other._type)
 {
     PRINT("Cat copy constructor called");
     _brain = new Brain();
