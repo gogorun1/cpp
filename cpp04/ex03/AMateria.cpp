@@ -34,3 +34,9 @@ std::string const &AMateria::getType() const
 {
 	return _type;
 }
+
+// not sure what is use for
+void AMateria::use(ICharacter& target)
+{
+    (void)target;
+}

@@ -1,6 +1,7 @@
 #ifndef IMS_H
 #define IMS_H
 
+#include "AMateria.hpp"
 #include <iostream>
 #include <string>
 
