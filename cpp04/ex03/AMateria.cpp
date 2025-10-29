@@ -1,23 +1,23 @@
-#include "AAnimal.hpp"
+#include "AMateria.hpp"
 
-AAnimal::AAnimal() : _type("default")
+AMateria::AMateria() : _type("default")
 {
-	PRINT("AAnimal default constructor called");
+	PRINT("AMateria default constructor called");
 }
 
-AAnimal::AAnimal(std::string type) : _type(type)
+AMateria::AMateria(std::string const &type): _type(type)
 {
-	PRINT("AAnimal constructor with parameters called");
+	PRINT("AMateria constructor with parameters called");
 }
 
-AAnimal::AAnimal(AAnimal const &other) : _type(other._type)
+AMateria::AMateria(AMateria const &other) : _type(other._type)
 {
-	PRINT("AAnimal copy constructor called");
+	PRINT("AMateria copy constructor called");
 }
 
-AAnimal &AAnimal::operator=(AAnimal const &other)
+AMateria &AMateria::operator=(AMateria const &other)
 {
-	PRINT("AAnimal assign operator called");
+	PRINT("AMateria assign operator called");
 	if (this != &other)
 	{
 		this->_type = other._type;
@@ -25,16 +25,12 @@ AAnimal &AAnimal::operator=(AAnimal const &other)
 	return *this;
 }
 
-AAnimal::~AAnimal()
+AMateria::~AMateria()
 {
-	PRINT("AAnimal destructor called");
+	PRINT("AMateria destructor called");
 }
 
-// void AAnimal::makeSound() const
-// {
-// }
-
-std::string AAnimal::getType() const
+std::string const &AMateria::getType() const
 {
 	return _type;
 }
