@@ -1,4 +1,4 @@
-NAME = a_animal
+NAME = materia
 
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -MMD -MP -std=c++98

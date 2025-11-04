@@ -28,5 +28,11 @@ d->makeSound();
 e->makeSound();//will output the wrong animal sound!
 f.makeSound();//will output cat sound
 
+delete meta;
+delete j;
+delete i;
+delete d;
+delete e;
+
 return 0;
 }

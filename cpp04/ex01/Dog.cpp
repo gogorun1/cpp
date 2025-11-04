@@ -1,35 +1,36 @@
 #include "Dog.hpp"
 
-Dog::Dog(): Animal("Dog")
+Dog::Dog() : Animal("Dog")
 {
-    _brain = new Brain();
-    PRINT("Dog default constructor called");
+	PRINT("Dog default constructor called");
+	_brain = new Brain();
 }
 
-Dog::Dog(Dog const &other): Animal(other._type)
+Dog::Dog(Dog const &other) : Animal(other._type)
 {
-    _brain = new Brain();
-    PRINT("Dog copy constructor called");
+	PRINT("Dog copy constructor called");
+	_brain = new Brain();
+	*_brain = *(other._brain);
 }
 
 Dog &Dog::operator=(Dog const &other)
 {
-    PRINT("Dog assign operator called");
-    if (this != &other)
-    {
-       this->_type = other._type;
-    }
-    return *this;
+	PRINT("Dog assign operator called");
+	if (this != &other)
+	{
+		this->_type = other._type;
+		*_brain = *(other._brain);
+	}
+	return *this;
 }
 
 Dog::~Dog()
 {
-    delete _brain;
-    PRINT("Dog destructor called");
+	PRINT("Dog destructor called");
+	delete _brain;
 }
 
 void Dog::makeSound() const
 {
-    PRINT("Woof woof");
+	PRINT("Woof woof");
 }
-

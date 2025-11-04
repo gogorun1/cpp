@@ -10,6 +10,7 @@ Cat::Cat(Cat const &other): Animal(other._type)
 {
     PRINT("Cat copy constructor called");
     _brain = new Brain();
+	*_brain = *(other._brain);
 }
 
 Cat &Cat::operator=(Cat const &other)
@@ -18,6 +19,7 @@ Cat &Cat::operator=(Cat const &other)
     if (this != &other)
     {
        this->_type = other._type;
+	   *_brain = *(other._brain);
     }
     return *this;
 }
