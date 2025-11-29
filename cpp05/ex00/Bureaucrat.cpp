@@ -1,5 +1,6 @@
 #include "Bureaucrat.hpp"
 
+// Helper functions
 void Bureaucrat::checkGrade(int grade)
 {
 	if (grade > 150)
@@ -8,14 +9,20 @@ void Bureaucrat::checkGrade(int grade)
 		throw GradeTooLowException();
 }
 
-Bureaucrat::Bureaucrat(std::string Name, int Grade): _name(Name),_grade(Grade)
+// OCF
+Bureaucrat::Bureaucrat() : _name("Default"), _grade(150)
+{
+	PRINT("Bureaucrat " << _name << " is constructed");
+}
+
+Bureaucrat::Bureaucrat(std::string Name, int Grade) : _name(Name), _grade(Grade)
 {
 	checkGrade(_grade);
 	_grade = Grade;
 	PRINT("Bureaucrat " << _name << " is constructed");
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &other): _name(other._name + "_copy"),_grade(other._grade)
+Bureaucrat::Bureaucrat(const Bureaucrat &other) : _name(other._name + "_copy"), _grade(other._grade)
 {
 	PRINT("Bureaucrat " << _name << " is constructed");
 }
@@ -31,4 +38,49 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
 Bureaucrat::~Bureaucrat()
 {
 	PRINT("Bureaucrat " << _name << " is destroyed");
+}
+
+// Getters
+const std::string Bureaucrat::getName() const
+{
+	return(_name);
+}
+
+int Bureaucrat::getGrade() const
+{
+	return(_grade);
+}
+
+// Increment & Decrement
+void Bureaucrat::incrementGrade()
+{
+	PRINT(*this);
+	checkGrade(_grade - 1);
+	_grade -= 1;
+	PRINT("Increment grade of " << _name << ", now the grade is " << _grade);
+}
+void Bureaucrat::decrementGrade()
+{
+	PRINT(*this);
+	checkGrade(_grade + 1);
+	_grade += 1;
+	PRINT("Decrement grade of " << _name << ", now the grade is " << _grade);
+}
+
+// Exceptions
+const char *Bureaucrat::GradeTooHighException::what() const throw()
+{
+	return "Grade too high!";
+}
+
+const char *Bureaucrat::GradeTooLowException::what() const throw()
+{
+	return "Grade too low!";
+}
+
+// overload insertion
+std::ostream &operator<<(std::ostream &os, const Bureaucrat &b)
+{
+	os << b.getName() << ", bureaucrat grade " << b.getGrade() << ".";
+	return os;
 }

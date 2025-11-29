@@ -13,34 +13,35 @@ private:
 	const std::string _name;
 	int _grade;
 	void checkGrade(int grade);
+
 public:
+	// OCF
+	Bureaucrat();
 	Bureaucrat(std::string Name, int Grade);
 	Bureaucrat(const Bureaucrat &other);
 	Bureaucrat &operator=(const Bureaucrat &other);
 	~Bureaucrat();
 
+	// Getters
 	const std::string getName() const;
 	int getGrade() const;
 
+	// Increment & Decrement
 	void incrementGrade();
 	void decrementGrade();
 
+	// Exceptions
 	class GradeTooHighException : public std::exception
 	{
-		virtual const char* what() const throw()
-		{
-			return "Grade too high!";
-		}
+		virtual const char *what() const throw();
 	};
 	class GradeTooLowException : public std::exception
 	{
-		virtual const char* what() const throw()
-		{
-			return "Grade too low!";
-		}
+		virtual const char *what() const throw();
 	};
 };
 
-
+// overload insertion
+std::ostream &operator<<(std::ostream &os, const Bureaucrat &b);
 
 #endif

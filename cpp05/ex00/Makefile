@@ -1,15 +1,11 @@
-NAME = animal
+NAME = rat
 
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -MMD -MP -std=c++98
 RM = rm -f
 
 SRCS = main.cpp \
-		Animal.cpp \
-		WrongAnimal.cpp \
-		Cat.cpp \
-		WrongCat.cpp \
-		Dog.cpp 
+		Bureaucrat.cpp 
 OBJS = $(SRCS:.cpp=.o)
 DEPS = $(SRCS:.cpp=.d)
 
