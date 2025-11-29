@@ -5,21 +5,26 @@
 #include <string>
 #include <exception>
 
-#define PRINT(x) std::cout << x << std::endl;
+#define PRINT(x) std::cout << x << std::endl
 
 class Bureaucrat
 {
 private:
 	const std::string _name;
 	int _grade;
+	void checkGrade(int grade);
 public:
-	Bureaucrat();
+	Bureaucrat(std::string Name, int Grade);
 	Bureaucrat(const Bureaucrat &other);
 	Bureaucrat &operator=(const Bureaucrat &other);
-
 	~Bureaucrat();
-	std::string getName();
-	std::string getGrade();
+
+	const std::string getName() const;
+	int getGrade() const;
+
+	void incrementGrade();
+	void decrementGrade();
+
 	class GradeTooHighException : public std::exception
 	{
 		virtual const char* what() const throw()
@@ -36,12 +41,6 @@ public:
 	};
 };
 
-Bureaucrat::Bureaucrat(/* args */)
-{
-}
 
-Bureaucrat::~Bureaucrat()
-{
-}
 
 #endif
