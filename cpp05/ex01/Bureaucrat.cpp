@@ -18,7 +18,6 @@ Bureaucrat::Bureaucrat() : _name("Default"), _grade(150)
 Bureaucrat::Bureaucrat(std::string Name, int Grade) : _name(Name), _grade(Grade)
 {
 	checkGrade(_grade);
-	_grade = Grade;
 	PRINT("Bureaucrat " << _name << " is constructed");
 }
 
@@ -83,4 +82,15 @@ std::ostream &operator<<(std::ostream &os, const Bureaucrat &b)
 {
 	os << b.getName() << ", bureaucrat grade " << b.getGrade() << ".";
 	return os;
+}
+
+// new added function
+void Bureaucrat::signForm(Form &form)
+{
+	try {
+		form.beSigned(*this);
+		PRINT(_name << " Signed " << form.getName());
+	} catch(const Form::GradeTooLowException &e) {
+		PRINT(_name << " couldn't sign " << form.getName() << " because " <<  e.what());
+	}
 }
