@@ -1,7 +1,7 @@
 #include "ShrubberyCreationForm.hpp"
 
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string &target): AForm("Shrubbery Creation", 145, 137, target)
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target): AForm("Shrubbery Creation", 145, 137, target)
 {
 }
 
@@ -19,7 +19,22 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 {
 }
 
-void ShrubberyCreationForm::action() const
-{
 
+
+void ShrubberyCreationForm::action() const 
+{
+    std::string filename = this->getTarget() + "_shrubbery";
+
+    std::ofstream ofs(filename.c_str());
+    if (!ofs.is_open()) {
+        std::cerr << "Error: Could not open file " << filename << std::endl;
+        return;
+    }
+   
+    ofs << "       /\\      " << std::endl;
+    ofs << "      /\\*\\     " << std::endl;
+    ofs << "     /\\*\\*\\    " << std::endl;
+    
+    ofs.close();
+    std::cout << "Shrubbery planted successfully in " << filename << std::endl;
 }

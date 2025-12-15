@@ -2,6 +2,7 @@
 #define SCF_H
 
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <exception>
 #include "Bureaucrat.hpp"
@@ -10,7 +11,7 @@
 class ShrubberyCreationForm : public AForm
 {
 public:
-	ShrubberyCreationForm(std::string &target);
+	ShrubberyCreationForm(const std::string &target);
 	~ShrubberyCreationForm();
 
 // OCF

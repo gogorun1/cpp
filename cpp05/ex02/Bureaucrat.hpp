@@ -10,7 +10,7 @@
 #define PRINT(x) std::cout << x << std::endl
 #define PRINTERR(x) std::cerr << x << std::endl
 
-class Form;
+class AForm;
 
 class Bureaucrat
 {

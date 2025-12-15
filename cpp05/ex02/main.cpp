@@ -1,97 +1,152 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+// #include "RobotomyRequestForm.hpp"
+// #include "PresidentialPardonForm.hpp"
+#include <cstdlib>
+#include <ctime>
 
-// 辅助函数，用于将代码块包装在 try/catch 中，提高主函数的可读性
-void executeTest(const std::string& testName, void (*testFunc)()) {
-    std::cout << "\n==========================================" << std::endl;
-    std::cout << ">>> " << testName << " TEST START <<<" << std::endl;
-    std::cout << "==========================================" << std::endl;
-    try {
-        testFunc();
-    } catch (const std::exception& e) {
-        // 捕获测试函数中未在内部处理的标准异常
-        std::cerr << "Caught unexpected exception in " << testName << ": " << e.what() << std::endl;
-    } catch (...) {
-        std::cerr << "Caught unknown exception in " << testName << std::endl;
-    }
-    std::cout << "==========================================" << std::endl;
-    std::cout << ">>> " << testName << " TEST END <<<" << std::endl;
-    std::cout << "==========================================" << std::endl;
+void executeTest(const std::string &testName, void (*testFunc)())
+{
+	std::cout << "\n==========================================" << std::endl;
+	std::cout << ">>> " << testName << " TEST START <<<" << std::endl;
+	std::cout << "==========================================" << std::endl;
+	try
+	{
+		testFunc();
+	}
+	catch (const std::exception &e)
+	{
+		std::cerr << "Caught unexpected standard exception in " << testName << ": " << e.what() << std::endl;
+	}
+	catch (...)
+	{
+		std::cerr << "Caught unknown exception in " << testName << std::endl;
+	}
+	std::cout << "==========================================" << std::endl;
+	std::cout << ">>> " << testName << " TEST END <<<" << std::endl;
+	std::cout << "==========================================" << std::endl;
 }
 
 // ----------------------------------------------------
-// TEST 1: Form 构造函数异常测试
+// TEST 1: ShrubberyCreationForm
 // ----------------------------------------------------
-void testFormConstructionExceptions() {
-    std::cout << "--- Sub-test: Too High Grade for Signing ---" << std::endl;
-    try {
-        // 尝试创建需要等级 0 的表格 (Too High)
-        Form invalidForm1("HighGradeForm", 0, 10);
-        std::cout << invalidForm1 << std::endl; // 不应执行
-    } catch (const Form::GradeTooHighException& e) {
-        std::cerr << "SUCCESS: Caught exception: " << e.what() << std::endl;
-    } catch (const std::exception& e) {
-        std::cerr << "FAILURE: Wrong exception type caught: " << e.what() << std::endl;
-    }
-    
-    std::cout << "\n--- Sub-test: Too Low Grade for Execution ---" << std::endl;
-    try {
-        // 尝试创建执行等级 151 的表格 (Too Low)
-        Form invalidForm2("LowGradeForm", 50, 151);
-        std::cout << invalidForm2 << std::endl; // 不应执行
-    } catch (const Form::GradeTooLowException& e) {
-        std::cerr << "SUCCESS: Caught exception: " << e.what() << std::endl;
-    } catch (const std::exception& e) {
-        std::cerr << "FAILURE: Wrong exception type caught: " << e.what() << std::endl;
-    }
+void testShrubbery()
+{
+	// Shrubbery: Sign 145, Exec 137
+	Bureaucrat lowRankB("Bender", 140); // able to sign(140 <= 145)，not able to execute (140 > 137)
+	Bureaucrat highRankB("Fry", 130);	// sign and execute
+
+	try
+	{
+		ShrubberyCreationForm form1("Home");
+		lowRankB.signForm(form1);
+		std::cout << form1 << std::endl;
+
+		lowRankB.executeForm(form1);
+	}
+	catch (const std::exception &e)
+	{
+		std::cerr << "Exception in test 1.1: " << e.what() << std::endl;
+	}
+
+	std::cout << "\n--- Sub-test: Successful Execution (Fry) ---" << std::endl;
+
+	try
+	{
+		ShrubberyCreationForm form2("Garden");
+		highRankB.signForm(form2);
+		highRankB.executeForm(form2);
+	}
+	catch (const std::exception &e)
+	{
+		std::cerr << "Exception in test 1.2: " << e.what() << std::endl;
+	}
 }
 
-// ----------------------------------------------------
-// TEST 2: Bureaucrat 签署成功测试
-// ----------------------------------------------------
-void testSuccessfulSigning() {
-    // 局长等级 50 (高等级)
-    Bureaucrat highRankB("Hermes", 50); 
-    // 表格要求签署等级 70 (要求低)
-    Form easyForm("EasyVisa", 70, 100);
+// // ----------------------------------------------------
+// // TEST 2: RobotomyRequestForm (随机性与未签署)
+// // ----------------------------------------------------
+// void testRobotomy()
+// {
+// 	// Robotomy: Sign 72, Exec 45
+// 	Bureaucrat mediumRankB("Hermes", 50); // 可签署 (50 <= 72)，不可执行 (50 > 45)
+// 	Bureaucrat topRankB("Zoidberg", 1);	  // 可签署，可执行
 
-    std::cout << highRankB << std::endl;
-    std::cout << easyForm << std::endl;
+// 	// 1. 测试未签署执行失败 (Hermes)
+// 	try
+// 	{
+// 		RobotomyRequestForm form3("Professor");
+// 		std::cout << form3 << std::endl;
+// 		mediumRankB.executeForm(form3); // 执行失败：未签署
+// 	}
+// 	catch (const std::exception &e)
+// 	{
+// 		std::cerr << "Exception in test 2.1: " << e.what() << std::endl;
+// 	}
 
-    // 尝试签署 (50 <= 70，成功)
-    highRankB.signForm(easyForm);
-    
-    std::cout << "--- After Signing ---" << std::endl;
-    std::cout << easyForm << std::endl; // 状态应显示 "Signed"
-}
+// 	std::cout << "\n--- Sub-test: Execution Attempts (Zoidberg) ---" << std::endl;
+// 	// 2. 测试多次执行 (Zoidberg) - 验证随机性
+// 	try
+// 	{
+// 		RobotomyRequestForm form4("Leela");
+// 		topRankB.signForm(form4);
 
-// ----------------------------------------------------
-// TEST 3: Bureaucrat 签署失败测试
-// ----------------------------------------------------
-void testFailedSigning() {
-    // 局长等级 120 (低等级)
-    Bureaucrat lowRankB("Bender", 120); 
-    // 表格要求签署等级 10 (要求高)
-    Form hardForm("HardPermit", 10, 50);
+// 		// 尝试多次执行，应看到成功的钻孔声和失败的钻孔声
+// 		for (int i = 0; i < 4; ++i)
+// 		{
+// 			topRankB.executeForm(form4);
+// 		}
+// 	}
+// 	catch (const std::exception &e)
+// 	{
+// 		std::cerr << "Exception in test 2.2: " << e.what() << std::endl;
+// 	}
+// }
 
-    std::cout << lowRankB << std::endl;
-    std::cout << hardForm << std::endl;
+// // ----------------------------------------------------
+// // TEST 3: PresidentialPardonForm (高级执行要求)
+// // ----------------------------------------------------
+// void testPardon()
+// {
+// 	// Pardon: Sign 25, Exec 5
+// 	Bureaucrat lowRankB("Amy", 30);	   // 可签署 (30 <= 25 失败)，不可执行
+// 	Bureaucrat highRankB("Kif", 10);   // 可签署 (10 <= 25 成功)，不可执行 (10 > 5)
+// 	Bureaucrat president("Zaphod", 1); // 可签署，可执行
 
-    // 尝试签署 (120 > 10，失败，Bureaucrat::signForm 应捕获 Form::GradeTooLowException)
-    lowRankB.signForm(hardForm); 
-    
-    std::cout << "--- After Signing ---" << std::endl;
-    std::cout << hardForm << std::endl; // 状态应显示 "Not Signed"
-}
+// 	// 1. 测试签署失败 (Amy)
+// 	try
+// 	{
+// 		PresidentialPardonForm form5("Nixon");
+// 		lowRankB.signForm(form5); // 签署失败：等级不足
+// 	}
+// 	catch (const std::exception &e)
+// 	{
+// 		std::cerr << "Exception in test 3.1: " << e.what() << std::endl;
+// 	}
 
+// 	std::cout << "\n--- Sub-test: Successful Execution (Zaphod) ---" << std::endl;
+// 	// 2. 测试成功执行 (Zaphod)
+// 	try
+// 	{
+// 		PresidentialPardonForm form6("Bender");
+// 		president.signForm(form6);
+// 		president.executeForm(form6); // 成功执行
+// 	}
+// 	catch (const std::exception &e)
+// 	{
+// 		std::cerr << "Exception in test 3.2: " << e.what() << std::endl;
+// 	}
+// }
 
-int main() {
-    // 运行所有测试
-    executeTest("FORM CONSTRUCTION EXCEPTION", testFormConstructionExceptions);
-    executeTest("SUCCESSFUL SIGNING", testSuccessfulSigning);
-    executeTest("FAILED SIGNING", testFailedSigning);
+int main()
+{
+	// 初始化随机数种子，用于 RobotomyRequestForm
+	std::srand(std::time(0));
 
-    // 可以在这里添加更多测试，例如重复签署已签署的表格等。
+	executeTest("SHRUBBERY FORM TEST", testShrubbery);
+	// executeTest("ROBOTOMY FORM TEST", testRobotomy);
+	// executeTest("PRESIDENTIAL PARDON TEST", testPardon);
 
-    return 0;
+	return 0;
 }
