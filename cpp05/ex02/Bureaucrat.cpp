@@ -42,12 +42,12 @@ Bureaucrat::~Bureaucrat()
 // Getters
 const std::string Bureaucrat::getName() const
 {
-	return(_name);
+	return (_name);
 }
 
 int Bureaucrat::getGrade() const
 {
-	return(_grade);
+	return (_grade);
 }
 
 // Increment & Decrement
@@ -85,12 +85,32 @@ std::ostream &operator<<(std::ostream &os, const Bureaucrat &b)
 }
 
 // new added function
-void Bureaucrat::signForm(Form &form)
+void Bureaucrat::signForm(AForm &form)
 {
-	try {
+	try
+	{
 		form.beSigned(*this);
 		PRINT(_name << " Signed " << form.getName());
-	} catch(const Form::GradeTooLowException &e) {
-		PRINT(_name << " couldn't sign " << form.getName() << " because " <<  e.what());
+	}
+	catch (const AForm::GradeTooLowException &e)
+	{
+		PRINTERR(_name << " couldn't sign " << form.getName() << " because " << e.what());
+	}
+}
+
+void Bureaucrat::executeForm(AForm const &form)
+{
+	try
+	{
+		form.execute(*this);
+		PRINT(_name << " executed " << form.getName());
+	}
+	catch (const AForm::FormNotSignedException &e)
+	{
+		PRINTERR(_name << " couldn't execute " << form.getName() << " because " << e.what());
+	}
+	catch (const AForm::GradeTooLowException &e)
+	{
+		PRINTERR(_name << " couldn't execute " << form.getName() << " because " << e.what());
 	}
 }

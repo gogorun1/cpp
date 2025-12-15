@@ -5,9 +5,10 @@
 #include <string>
 #include <exception>
 
-#include "Form.hpp"
+#include "AForm.hpp"
 
 #define PRINT(x) std::cout << x << std::endl
+#define PRINTERR(x) std::cerr << x << std::endl
 
 class Form;
 
@@ -44,8 +45,9 @@ public:
 		virtual const char *what() const throw();
 	};
 
-	//*new added
-	void signForm(Form &form);
+	// Sign and execute
+	void signForm(AForm &form);
+	void executeForm(AForm const &form);
 };
 
 // overload insertion
