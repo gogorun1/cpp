@@ -20,7 +20,7 @@ RobotomyRequestForm::~RobotomyRequestForm()
 
 void RobotomyRequestForm::action() const
 {
-	std::cout << "* VRRRRRRR... DDDDDDzzz... drilling noises... *" << std::endl;
+	PRINT("* VRRRRRRR... DDDDDDzzz... drilling noises... *");
 
 	if (std::rand() % 2)
 	{
