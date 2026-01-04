@@ -18,7 +18,6 @@ Bureaucrat::Bureaucrat() : _name("Default"), _grade(150)
 Bureaucrat::Bureaucrat(std::string Name, int Grade) : _name(Name), _grade(Grade)
 {
 	checkGrade(_grade);
-	_grade = Grade;
 	PRINT("Bureaucrat " << _name << " is constructed");
 }
 

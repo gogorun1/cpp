@@ -29,33 +29,73 @@ const char *Intern::NoMatchedFormException::what() const throw()
 
 
 // function
-AForm *Intern::makeForm(std::string formName, std::string formTarget)
+// AForm *Intern::makeForm(std::string formName, std::string formTarget)
+// {
+// 	int index;
+// 	std::string form[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
+// 	for(index = 0; index < 3; ++index)
+// 	{
+// 		if (formName == form[index])
+// 		{
+// 			switch (index)
+// 			{
+// 			case 0:
+// 			{
+// 				return(new ShrubberyCreationForm(formTarget));
+// 			}
+// 			case 1:
+// 			{
+// 				return(new RobotomyRequestForm(formTarget));
+// 			}
+// 			case 2:
+// 			{
+// 				return(new PresidentialPardonForm(formTarget));
+// 			}
+// 			default:
+// 				break;
+// 			}
+// 		}
+// 	}
+// 	PRINT("Intern cannot create " << formName << " because the name is unknown.");
+//     return NULL;
+// }
+
+static AForm* createShrubbery(std::string target) {
+	return new ShrubberyCreationForm(target);
+}
+
+static AForm* createRobotomy(std::string target) {
+	return new RobotomyRequestForm(target);
+}
+
+static AForm* createPardon(std::string target) {
+	return new PresidentialPardonForm(target);
+}
+
+AForm	*Intern::makeForm(std::string formName, std::string formTarget)
 {
-	int index;
-	std::string form[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
-	for(index = 0; index < 3; ++index)
+	std::string formNames[3] = {
+		"shrubbery creation",
+		"robotomy request",
+		"presidential pardon"
+	};
+	
+	AForm* (*creators[3])(std::string) = 
 	{
-		if (formName == form[index])
+		&createShrubbery,
+		&createRobotomy,
+		&createPardon
+	};
+
+	for (int i = 0; i < 3; ++i)
+	{
+		if (formName == formNames[i])
 		{
-			switch (index)
-			{
-			case 0:
-			{
-				return(new ShrubberyCreationForm(formTarget));
-			}
-			case 1:
-			{
-				return(new RobotomyRequestForm(formTarget));
-			}
-			case 2:
-			{
-				return(new PresidentialPardonForm(formTarget));
-			}
-			default:
-				break;
-			}
+			PRINT("Intern creates " << formName);
+			return creators[i](formTarget);
 		}
 	}
-	PRINT("Intern cannot create " << formName << " because the name is unknown.");
-    return NULL;
+	
+	PRINTERR("Intern cannot create " << formName << " because the name is unknown.");
+	throw NoMatchedFormException();
 }

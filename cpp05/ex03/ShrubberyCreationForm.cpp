@@ -27,8 +27,7 @@ void ShrubberyCreationForm::action() const
 
     std::ofstream ofs(filename.c_str());
     if (!ofs.is_open()) {
-        std::cerr << "Error: Could not open file " << filename << std::endl;
-        return;
+        throw std::runtime_error("Could not create file: " + filename);
     }
    
     ofs << "       /\\      " << std::endl;

@@ -26,14 +26,12 @@ public:
 	Intern &operator=(const Intern &other);
 	~Intern();
 
-	// AForm* Intern::createShrubbery(std::string target) { return new ShrubberyCreationForm(target); }
-	// AForm* Intern::createRobotomy(std::string target) { return new RobotomyRequestForm(target); }
-	// AForm* Intern::createPardon(std::string target) { return new PresidentialPardonForm(target); }
-
 	class NoMatchedFormException : public std::exception
 	{
+	public:
 		virtual const char *what() const throw();
-	};
+	};	
+
 
 	AForm *makeForm(std::string formName, std::string formTarget);
 };

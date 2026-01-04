@@ -83,10 +83,15 @@ int AForm::getExecGrade() const
 // Member functions
 void AForm::beSigned(const Bureaucrat &rat)
 {
-	if (rat.getGrade() <= this->getSignGrade())
-		_isSigned = true;
-	else
-		throw(GradeTooLowException());
+    if (_isSigned) {
+        PRINT("Form " << _name << " is already signed!");
+        return;
+    }
+    
+    if (rat.getGrade() <= this->getSignGrade())
+        _isSigned = true;
+    else
+        throw(GradeTooLowException());
 }
 
 // overload insertion
