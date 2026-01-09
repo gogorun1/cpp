@@ -1,5 +1,15 @@
 #include "ScalarConverter.hpp"
 
+/* ScalarConverter.cpp */
+ScalarConverter::ScalarConverter() {}
+ScalarConverter::~ScalarConverter() {}
+ScalarConverter::ScalarConverter(const ScalarConverter& src) { (void)src; }
+ScalarConverter& ScalarConverter::operator=(const ScalarConverter& rhs) {
+    (void)rhs;
+    return *this;
+}
+
+
 // helper
 static void printImpossible() {
     std::cout << "char: impossible" << std::endl;
