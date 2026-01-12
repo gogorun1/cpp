@@ -1,11 +1,11 @@
-NAME = serializer
+NAME = identify
 
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -MMD -MP -std=c++98
 RM = rm -f
 
 SRCS = main.cpp \
-		Serializer.cpp
+		Base.cpp
 OBJS = $(SRCS:.cpp=.o)
 DEPS = $(SRCS:.cpp=.d)
 
