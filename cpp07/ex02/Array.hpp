@@ -5,20 +5,18 @@ template <typename T>
 class Array
 {
 private:
-	const size_t _size;
-	T _array[_size];
+	int _size;
+	T *_array;
 
 public:
 	Array();
+	Array(int n);
+	Array(const Array<T> &other);
+	Array<T> &operator=(const Array<T> &other);
+
 	~Array();
 };
 
-Array::Array()
-{
-}
-
-Array::~Array()
-{
-}
+#include "Array.tpp"
 
 #endif
