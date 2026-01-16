@@ -4,7 +4,7 @@ CC = c++
 CFLAGS = -Wall -Werror -Wextra -MMD -MP -std=c++98
 RM = rm -f
 
-SRCS = main.cpp \
+SRCS = main.cpp 
 
 OBJS = $(SRCS:.cpp=.o)
 DEPS = $(SRCS:.cpp=.d)
