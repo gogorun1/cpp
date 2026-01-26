@@ -4,6 +4,7 @@
 #include <iostream>
 #include <map>
 #include <fstream>
+#include <stdlib.h>
 
 class BitcoinExchange
 {
@@ -21,6 +22,7 @@ public:
 	// helpers
 	bool isValidDate(const std::string &date);
     float getRate(const std::string &date);
+	void print_map(std::map<std::string, float> &m);
 };
 
 #endif

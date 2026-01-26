@@ -5,7 +5,7 @@ CFLAGS = -Wall -Werror -Wextra -MMD -MP -std=c++98
 RM = rm -f
 
 SRCS = main.cpp \
-# 		ex00.cpp \
+		BitcoinExchange.cpp \
 
 OBJS = $(SRCS:.cpp=.o)
 DEPS = $(SRCS:.cpp=.d)
