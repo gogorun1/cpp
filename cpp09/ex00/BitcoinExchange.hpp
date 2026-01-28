@@ -5,11 +5,13 @@
 #include <map>
 #include <fstream>
 #include <stdlib.h>
+#include <algorithm>
+#include <sstream>
 
 class BitcoinExchange
 {
 private:
-	std::map<std::string, float> _data;
+	std::map<std::string, double> _data;
 public:
 	BitcoinExchange();
 	BitcoinExchange(BitcoinExchange &other);
@@ -22,7 +24,7 @@ public:
 	// helpers
 	bool isValidDate(const std::string &date);
     float getRate(const std::string &date);
-	void print_map(std::map<std::string, float> &m);
+	void print_map(std::map<std::string, double> &m);
 };
 
 #endif
