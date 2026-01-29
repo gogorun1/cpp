@@ -12,19 +12,18 @@ class BitcoinExchange
 {
 private:
 	std::map<std::string, double> _data;
+	bool _isValidDate(const std::string& date) const;
+	std::string _trim(const std::string& str) const;
+	void _calculateAndPrint(const std::string& date, double amount) const;
+    void _loadDatabase(const std::string& filename);
+
 public:
 	BitcoinExchange();
 	BitcoinExchange(BitcoinExchange &other);
 	~BitcoinExchange();
 	BitcoinExchange &operator=(BitcoinExchange &other);
 
-	bool loadDatabase(const std::string &dbPath);
     void processInput(const std::string &inputPath);
-
-	// helpers
-	bool isValidDate(const std::string &date);
-    float getRate(const std::string &date);
-	void print_map(std::map<std::string, double> &m);
 };
 
 #endif
